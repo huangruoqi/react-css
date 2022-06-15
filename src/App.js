@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Item } from "./Components/Container";
+import animations from "./Components/animations"
+import { ThemeProvider } from "styled-components";
+
+const theme = {
+  bg: '#282424'
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <Container>
+          {Object.keys(animations).map((key) => {
+            const A = animations[key]
+            return <Item key={key}><A onClick={() => console.log("clicked!")}></A></Item>
+          })}
+        </Container>
+      </ThemeProvider>
     </div>
   );
 }
